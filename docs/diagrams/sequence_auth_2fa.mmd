@@ -1,0 +1,25 @@
+sequenceDiagram
+    participant U as Пользователь
+    participant C as Web-клиент
+    participant GW as API Gateway
+    participant AU as Сервис аутентификации
+    participant DB as PostgreSQL
+
+    U->>C: Email и пароль
+    C->>GW: POST /api/v1/auth/login
+    GW->>AU: Проверка учётных данных
+    AU->>DB: SELECT пользователь и роль
+    DB-->>AU: Данные пользователя
+    alt Роль Ученик
+        AU-->>C: 200 OK {access_token, refresh_token}
+    else Роль Преподаватель или Администратор
+        AU-->>C: 200 OK {mfa_required: true, mfa_token}
+        U->>C: Код TOTP (6 цифр)
+        C->>GW: POST /api/v1/auth/2fa/verify
+        GW->>AU: Проверка кода TOTP
+        alt Код верен
+            AU-->>C: 200 OK {access_token, refresh_token}
+        else Код неверен
+            AU-->>C: 401 INVALID_MFA_CODE
+        end
+    end
