@@ -1,0 +1,38 @@
+@startuml
+title ИС LangMeet — диаграмма сценариев использования (итерация 2)
+left to right direction
+
+actor "Гость" as G
+actor "Ученик" as U
+actor "Преподаватель" as T
+actor "Администратор" as A
+
+rectangle "ИС LangMeet" {
+  usecase "Зарегистрироваться" as UC1
+  usecase "Авторизоваться" as UC2
+  usecase "Пройти 2FA (TOTP)" as UC14 <<новое, F1>>
+  usecase "Найти собеседника" as UC4
+  usecase "Пригласить собеседника по ссылке" as UC15 <<новое, F3>>
+  usecase "Провести сессию" as UC5
+  usecase "Использовать Путеводитель тем" as UC6
+  usecase "Экспортировать отчёт сессии (PDF)" as UC16 <<новое, F4>>
+  usecase "Управлять пользователями" as UC13
+}
+
+G --> UC1
+G --> UC2
+U --> UC2
+T --> UC2
+A --> UC2
+U --> UC4
+U --> UC15
+T --> UC5
+U --> UC5
+T --> UC16
+A --> UC13
+
+UC2 ..> UC14 : <<extend>> для Преподавателя и Администратора
+UC4 ..> UC15 : <<extend>> альтернатива очереди подбора
+UC5 ..> UC6 : <<include>>
+UC16 ..> UC5 : <<extend>> после завершения сессии
+@enduml
