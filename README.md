@@ -27,6 +27,11 @@
 | Комплект программной документации (ЛР №5) | [docs/05_Software_Documentation_LR5.pdf](docs/05_Software_Documentation_LR5.pdf) |
 | Руководство пользователя | [docs/user/user_guide.pdf](docs/user/user_guide.pdf) |
 | Руководство администратора | [docs/user/admin_guide.pdf](docs/user/admin_guide.pdf) |
+| Диаграммы итерации 2 (Use Case, Activity, Sequence) | [docs/diagrams/](docs/diagrams/) |
+| Спецификация API v1.1 | [docs/api/api_v1.1_changes.md](docs/api/api_v1.1_changes.md) |
+| Изменения архитектуры | [docs/architecture_changes.md](docs/architecture_changes.md) |
+| Журнал изменений ТЗ | [docs/tz_changelog.md](docs/tz_changelog.md) |
+| Замечания заказчика (итерация 2) | [docs/feedback/iteration_2_feedback.md](docs/feedback/iteration_2_feedback.md) |
 
 ## Технологический стек
 
